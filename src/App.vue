@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import FirstPage from './components/FirstPage.vue'
 </script>
 
 <template>
-  <HelloWorld />
+  <FirstPage />
 </template>
