@@ -1,0 +1,25 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.lower-section .base-card {
+    background: rgb(253, 105, 105);
+    gap: 0.5rem;
+    color: white;
+}
+.movie-card .base-card{
+    border: 0.1rem solid white;
+    border-radius: 2rem;
+}
+ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    max-height: 60vh;
+    list-style: none;
+    overflow-y: auto;
+}
