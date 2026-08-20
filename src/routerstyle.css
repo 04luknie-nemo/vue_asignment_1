@@ -1,0 +1,8 @@
+nav a{
+    border: 0.1rem solid black;
+    border-radius: 2rem;
+    padding: 0.75rem;
+    background: rgb(15, 70, 88);
+    text-decoration: none;
+    color: lightblue
+}
