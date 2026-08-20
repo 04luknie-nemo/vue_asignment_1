@@ -13,6 +13,7 @@ const newMovie = ref('')
 
 async function addMovie() {
   if (newMovie.value.trim() === '') return;
+  // Part which I in school will look into more later
   const response = await fetch(`https://www.omdbapi.com/?apikey=5be74358&t=${newMovie.value}`);
   const data = await response.json();
 
@@ -33,17 +34,23 @@ window.movies = movies;
 
 <template>
   <section id="center">
-    <article>
-      <button type="button" class="counter" @click="count++">
-        Count is {{ count }}
-      </button>
-      <form @submit.prevent="addMovie">
-        <h2>Lägg Till Film</h2>
-        <div>
-          <input v-model="newMovie" placeholder="Skriv här">
-          <button type="submit">Lägg Till</button>
-        </div>  
-      </form>
-    </article>
+    <button type="button" class="counter" @click="count++">
+      Count is {{ count }}
+    </button>
+    <form @submit.prevent="addMovie">
+      <h2>Lägg Till Film</h2>
+      <div>
+        <input v-model="newMovie" placeholder="Skriv här">
+        <button type="submit">Lägg Till</button>
+      </div>  
+    </form>
+  </section>
+  <section>
+    <h2>Tillgada Filmer</h2>
+    <ul>
+      <article>
+        <li v-for="movie in movies">Titel: {{ movie.title }} Release: {{ movie.year }} Plot: {{ movie.plot }}</li>
+      </article>
+    </ul>
   </section>
 </template>
