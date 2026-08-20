@@ -1,26 +1,17 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-
-const count = ref(0)
+import MovieCard from './MovieCard.vue'
 
 interface Movie {
   title: string,
   year: string,
   plot: string
 }
+const count = ref(0)
 const movies = ref<Movie[]>([])
 const newMovie = ref('')
-
 const showMovies = ref<boolean>(false);
-function toggleMovies() {
-  if (movies.value.length < 1) return;
-  showMovies.value = !showMovies.value;
-}
-
 const isDark = ref<boolean>(false);
-function toggleTheme() {
-  isDark.value = !isDark.value;
-}
 
 async function addMovie() {
   if (newMovie.value.trim() === '') return;
@@ -41,11 +32,18 @@ async function addMovie() {
     toggleMovies();
   }
 }
-
-watch(isDark, function (newValue) {
+function toggleMovies() {
+  if (movies.value.length < 1) return;
+  showMovies.value = !showMovies.value;
+}
+function toggleTheme(): void {
+  isDark.value = !isDark.value;
+}
+// Också avancerat
+watch(isDark, function (newValue: boolean) {
   document.body.className = newValue ? 'dark-mode' : 'light-mode'
 }, {immediate: true});
-
+//
 // @ts-ignore
 window.movies = movies;
 
@@ -73,12 +71,8 @@ window.movies = movies;
       <div v-if="showMovies">
         <h2>Tillagda Filmer</h2>
         <ul>
-          <li v-for="movie in movies">
-            <article class="movie-card base-card">
-              <p>Titel: {{ movie.title }}</p>
-              <p>Release: {{ movie.year }}</p>
-              <p>Plot: {{ movie.plot }}</p>
-            </article>
+          <li v-for="movie in movies" v-bind:key="movie.title">
+            <MovieCard v-bind:movie="movie"/>
           </li>
         </ul>
       </div>
