@@ -33,24 +33,30 @@ window.movies = movies;
 </script>
 
 <template>
-  <section id="center">
-    <button type="button" class="counter" @click="count++">
-      Count is {{ count }}
-    </button>
-    <form @submit.prevent="addMovie">
-      <h2>Lägg Till Film</h2>
-      <div>
-        <input v-model="newMovie" placeholder="Skriv här">
-        <button type="submit">Lägg Till</button>
-      </div>  
-    </form>
-  </section>
-  <section>
-    <h2>Tillgada Filmer</h2>
-    <ul>
-      <article>
-        <li v-for="movie in movies">Titel: {{ movie.title }} Release: {{ movie.year }} Plot: {{ movie.plot }}</li>
-      </article>
-    </ul>
-  </section>
+  <div class="page">
+    <section id="center" class="base-card">
+      <form @submit.prevent="addMovie">
+        <h2>Lägg Till Film</h2>
+        <div>
+          <input v-model="newMovie" placeholder="Skriv här">
+          <button type="submit">Lägg Till</button>
+        </div>  
+      </form>
+      <button type="button" class="counter" @click="count++">
+        Count is {{ count }}
+      </button>
+    </section>
+    <section class="lower-section base-card">
+      <h2>Tillgada Filmer</h2>
+      <ul>
+        <li v-for="movie in movies">
+          <article class="movie-card base-card">
+            <p>Titel: {{ movie.title }}</p>
+            <p>Release: {{ movie.year }}</p>
+            <p>Plot: {{ movie.plot }}</p>
+          </article>
+        </li>
+      </ul>
+    </section>
+  </div>
 </template>
