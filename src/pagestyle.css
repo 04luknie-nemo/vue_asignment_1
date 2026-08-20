@@ -1,0 +1,9 @@
+body.light-mode {
+    background: white;
+    color: black;
+}
+
+body.dark-mode {
+    background: rgb(61, 65, 66);
+    color: white;
+}
