@@ -3,30 +3,35 @@ import { ref, watch } from 'vue'
 import MovieCard from './MovieCard.vue'
 
 interface Movie {
+  id: number,
   title: string,
   year: string,
-  plot: string
+  plot: string,
 }
 const count = ref(0)
 const movies = ref<Movie[]>([])
-const newMovie = ref('')
+const newMovie = ref<string>('')
 const showMovies = ref<boolean>(false);
 const isDark = ref<boolean>(false);
+const latestAdded = ref<number|null>(null);
 
 async function addMovie() {
   if (newMovie.value.trim() === '') return;
   // Part which I in school will look into more later
   const response = await fetch(`https://www.omdbapi.com/?apikey=5be74358&t=${newMovie.value}`);
   const data = await response.json();
+  const newId = Date.now();
 
   if (data.response === 'False') {
     console.log('Filmen hittades inte');
   }
   movies.value.push({
+    id: newId,
     title: data.Title,
     year: data.Year,
-    plot: data.Plot
-  })
+    plot: data.Plot,
+  });
+  latestAdded.value = newId;
   newMovie.value = ''
   if (movies.value.length >= 1 && movies.value.length < 2) {
     toggleMovies();
@@ -71,7 +76,7 @@ window.movies = movies;
       <div v-if="showMovies">
         <h2>Tillagda Filmer</h2>
         <ul>
-          <li v-for="movie in movies" v-bind:key="movie.title">
+          <li v-for="movie in movies" v-bind:key="movie.title" v-bind:class="{newest: movie.id === latestAdded}">
             <MovieCard v-bind:movie="movie"/>
           </li>
         </ul>

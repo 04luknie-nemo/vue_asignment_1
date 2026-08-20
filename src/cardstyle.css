@@ -51,3 +51,8 @@ ul {
     list-style: none;
     overflow-y: auto;
 }
+
+.newest {
+    border: 0.25rem solid gold;
+    border-radius: 2.25rem;
+}
