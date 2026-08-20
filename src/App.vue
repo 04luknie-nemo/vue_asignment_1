@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import FirstPage from './components/FirstPage.vue'
 </script>
 
 <template>
-  <FirstPage />
+  <nav>
+    <RouterView/>
+  </nav>
 </template>

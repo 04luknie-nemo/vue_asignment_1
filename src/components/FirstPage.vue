@@ -56,6 +56,9 @@ window.movies = movies;
 
 <template>
   <main class="page" id="center">
+    <nav>    
+      <RouterLink to="/second_page">Andra Sidan</RouterLink>
+    </nav>
     <section class="base-card">
       <div>
         <h2>Lägg Till Film</h2>
